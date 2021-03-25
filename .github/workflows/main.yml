@@ -1,5 +1,5 @@
+---
 name: CI
-
 on:
   push:
     paths:
@@ -7,12 +7,13 @@ on:
     - '!**.md'
     - '!doc/**'
     - '!**.png'
-
+  pull_request:
+  workflow_dispatch:
 jobs:
   create-release:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Get tag name, if specified
       run: if grep -q "/tags/" <<< "${GITHUB_REF}"; then echo ::set-output name=tag::${GITHUB_REF:10}; fi
       id: get_tag
@@ -45,4 +46,3 @@ jobs:
         REPLICATED_APP: ${{ secrets.REPLICATED_APP }}
         GITHUB_BRANCH_NAME: ${{ steps.get_branch.outputs.branch }}
         GITHUB_TAG_NAME: ${{ steps.get_tag.outputs.tag }}
-
