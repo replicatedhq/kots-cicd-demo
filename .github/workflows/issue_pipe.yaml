@@ -1,6 +1,7 @@
+---
 on:
- issue_comment:
-   types: [created]
+  issue_comment:
+    types: [created]
 
 name: Issue Comments
 jobs:
@@ -38,4 +39,3 @@ jobs:
           ISSUE_ID: ${{ github.event.issue.id }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           GITHUB_LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
-
