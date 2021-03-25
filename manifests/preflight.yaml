@@ -1,3 +1,4 @@
+---
 apiVersion: troubleshoot.replicated.com/v1beta1
 kind: Preflight
 metadata:

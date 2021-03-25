@@ -1,15 +1,17 @@
+---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ingress
+  namespace: guestbook
+  name: frontend
   annotations:
     kots.io/when: '{{repl ConfigOptionEquals "use_ingress" "1" }}'
+    kubernetes.io/ingress.class: traefik
 spec:
   rules:
   - http:
       paths:
-        - path: /
-          backend:
-            serviceName: example-nginx
-            servicePort: 80
-
+      - path: /
+        backend:
+          serviceName: guestbook-frontend-service
+          servicePort: 80
