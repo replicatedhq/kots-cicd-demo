@@ -13,7 +13,7 @@ jobs:
   create-release:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
     - name: Get tag name, if specified
       run: if grep -q "/tags/" <<< "${GITHUB_REF}"; then echo ::set-output name=tag::${GITHUB_REF:10}; fi
       id: get_tag
