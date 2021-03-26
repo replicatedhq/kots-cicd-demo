@@ -66,13 +66,13 @@ jobs:
         export_default_credentials: true
     - name: Deploy embedded cluster
       run: |
-        gcloud compute instances create ada-cicd-demo-testrunner \
+        gcloud compute instances create ada-${REPLICATED_APP}-${GITHUB_SHA} \
         --zone us-east1-b \
         --boot-disk-size=20GB \
         --image-project centos-cloud \
         --image-family centos-7 \
         --machine-type e2-medium \
-        && gcloud compute instances delete $INSTANCE
+        && gcloud compute instances delete ada-${REPLICATED_APP}-${GITHUB_SHA}
   # deploy-existing:
   #   runs-on: ubuntu-latest
   #   steps:
