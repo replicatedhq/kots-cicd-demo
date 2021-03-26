@@ -57,7 +57,7 @@ jobs:
     #     checkName: create-release
     #     ref: ${{ github.event.pull_request.head.sha || github.sha }}
     - name: Set up Cloud SDK
-      if: steps.wait-for-build.outputs.conclusion == 'success'
+      # if: steps.wait-for-build.outputs.conclusion == 'success'
       uses: google-github-actions/setup-gcloud@master
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
