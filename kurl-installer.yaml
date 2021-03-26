@@ -1,22 +1,22 @@
 ---
-apiVersion: kurl.sh/v1beta1
-kind: Installer
+apiVersion: "cluster.kurl.sh/v1beta1"
+kind: "Installer"
 metadata:
-  name: 'cicd-demo'
+  name: "cicd-demo"
 spec:
   kubernetes:
-    version: latest
-  docker:
-    version: latest
+    version: "latest"
   weave:
-    version: latest
-  rook:
-    version: latest
+    version: "latest"
   contour:
-    version: latest
+    version: "latest"
   registry:
-    version: latest
-  prometheus:
-    version: latest
+    version: "latest"
+  containerd:
+    version: "latest"
   kotsadm:
-    version: latest
+    version: "latest"
+  ekco:
+    version: "latest"
+  openebs:
+    version: "latest"
