@@ -58,7 +58,7 @@ jobs:
     - name: Deploy embedded cluster
       run: |
         gcloud compute instances create ada-cicd-demo-testrunner \
-        --zone us-east1 \
+        --zone us-east1-b \
         --boot-disk-size=20GB \
         --image-project centos-cloud \
         --image-family centos-7 \
