@@ -18,5 +18,7 @@ spec:
     version: "latest"
   ekco:
     version: "latest"
+  minio:
+    version: "latest"
   openebs:
     version: "latest"
