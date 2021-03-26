@@ -45,7 +45,7 @@ jobs:
         REPLICATED_APP: ${{ secrets.REPLICATED_APP }}
         GITHUB_BRANCH_NAME: ${{ steps.get_branch.outputs.branch }}
         GITHUB_TAG_NAME: ${{ steps.get_tag.outputs.tag }}
-  deploy-embedded:
+  deploy-embedded-cluster:
     runs-on: ubuntu-latest
     steps:
     - name: Wait for build to succeed
@@ -83,6 +83,16 @@ jobs:
       run: |
         gcloud compute instances delete ada-${REPLICATED_APP}-${GITHUB_SHA} \
         --zone us-east1-b
+  promote-release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Wait for tests to complete
+      uses: fountainhead/action-wait-for-check@v1.0.0
+      id: wait-for-deploy
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        checkName: deploy-embedded-cluster
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
   # deploy-existing:
   #   runs-on: ubuntu-latest
