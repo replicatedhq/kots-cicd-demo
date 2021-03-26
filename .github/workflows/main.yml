@@ -72,7 +72,8 @@ jobs:
         --image-project centos-cloud \
         --image-family centos-7 \
         --machine-type e2-medium \
-        && gcloud compute instances delete ada-${REPLICATED_APP}-${GITHUB_SHA}
+        && gcloud compute instances delete ada-${REPLICATED_APP}-${GITHUB_SHA} \
+        --zone us-east1-b
   # deploy-existing:
   #   runs-on: ubuntu-latest
   #   steps:
