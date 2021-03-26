@@ -1,7 +1,8 @@
+---
 apiVersion: kurl.sh/v1beta1
 kind: Installer
 metadata:
-  name: 'myapp'
+  name: 'cicd-demo'
 spec:
   kubernetes:
     version: latest
@@ -19,4 +20,3 @@ spec:
     version: latest
   kotsadm:
     version: latest
-
