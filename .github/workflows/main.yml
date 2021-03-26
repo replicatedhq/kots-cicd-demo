@@ -87,7 +87,7 @@ jobs:
         --zone us-east1-b
   promote-release:
     runs-on: ubuntu-latest
-    needs: create-release
+    needs: deploy-embedded-cluster
     steps:
     # - name: Wait for tests to complete
     #   uses: fountainhead/action-wait-for-check@v1.0.0
