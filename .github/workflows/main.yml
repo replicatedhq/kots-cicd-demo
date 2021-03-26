@@ -78,7 +78,7 @@ jobs:
       env:
         REPLICATED_APP: ${{ secrets.REPLICATED_APP }}
       run: |
-        gcloud compute instances destroy ada-${REPLICATED_APP}-${GITHUB_SHA} \
+        gcloud compute instances delete ada-${REPLICATED_APP}-${GITHUB_SHA} \
         --zone us-east1-b
   # deploy-existing:
   #   runs-on: ubuntu-latest
