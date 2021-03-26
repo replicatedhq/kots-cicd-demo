@@ -9,8 +9,9 @@ spec:
   statusInformers:
     - deployment/frontend
     - deployment/redis-master
+    - deployment/redis-slave
   ports:
-    - serviceName: "example-nginx"
+    - serviceName: guestbook-frontend-service
       servicePort: 80
       localPort: 8888
-      applicationUrl: "http://example-nginx"
+      applicationUrl: http://guestbook
