@@ -70,13 +70,13 @@ jobs:
       run: |
         gcloud compute instances create ada-${REPLICATED_APP}-${GITHUB_SHA} \
         --zone us-east1-b \
-        --boot-disk-size=20GB \
+        --boot-disk-size=200GB \
         --image-project centos-cloud \
         --image-family centos-7 \
         --machine-type e2-medium
     - name: Install application using embedded cluster
       run: |
-        curl -sSL https://k8s.kurl.sh/cicd-demo-unstable | sudo bash
+        curl -sSL https://k8s.kurl.sh/cicd-demo-unstable | sudo bash && until
     - name: Destroy VM
       env:
         REPLICATED_APP: ${{ secrets.REPLICATED_APP }}
