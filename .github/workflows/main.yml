@@ -48,13 +48,25 @@ jobs:
   deploy-embedded:
     runs-on: ubuntu-latest
     steps:
+    - name: Wait for build to succeed
+      uses: fountainhead/action-wait-for-check@v1.0.0
+      id: wait-for-build
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        checkName: create-release
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    - name: Do something with a passing build
+
+    # - name: Do something with a failing build
+    #   if: steps.wait-for-build.outputs.conclusion == 'failure'
     - name: Set up Cloud SDK
+      if: steps.wait-for-build.outputs.conclusion == 'success'
       uses: google-github-actions/setup-gcloud@master
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         export_default_credentials: true
-
     - name: Deploy embedded cluster
       run: |
         gcloud compute instances create ada-cicd-demo-testrunner \
@@ -64,16 +76,14 @@ jobs:
         --image-family centos-7 \
         --machine-type e2-medium \
         && gcloud compute instances delete $INSTANCE
-
-  deploy-existing:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Set up Cloud SDK
-      uses: google-github-actions/setup-gcloud@master
-      with:
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
-        service_account_key: ${{ secrets.GCP_SA_KEY }}
-        export_default_credentials: true
-
-    - name: Use gcloud CLI
-      run: gcloud info
+  # deploy-existing:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Set up Cloud SDK
+  #     uses: google-github-actions/setup-gcloud@master
+  #     with:
+  #       project_id: ${{ secrets.GCP_PROJECT_ID }}
+  #       service_account_key: ${{ secrets.GCP_SA_KEY }}
+  #       export_default_credentials: true
+  #   - name: Use gcloud CLI
+  #     run: gcloud info
