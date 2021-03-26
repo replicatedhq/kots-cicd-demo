@@ -101,7 +101,7 @@ jobs:
         echo "replicated promote release"
   cleanup:
     runs-on: ubuntu-latest
-    needs: create-release
+    needs: deploy-embedded-cluster
     if: always()
     steps:
     - name: Set up Cloud SDK
