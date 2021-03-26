@@ -77,7 +77,8 @@ jobs:
       env:
         REPLICATED_APP: ${{ secrets.REPLICATED_APP }}
       run: |
-        gcloud compute ssh \
+        gcloud compute ssh ada-${REPLICATED_APP}-${GITHUB_SHA} \
+        --zone us-east1-b \
         --ssh-flag=-A \
         --command='curl -sSL https://k8s.kurl.sh/cicd-demo-unstable | sudo bash'
         ada-${REPLICATED_APP}-${GITHUB_SHA}
