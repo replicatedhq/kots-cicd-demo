@@ -75,6 +75,8 @@ jobs:
         --ssh-flag=-A \
         --command='curl -sSL https://k8s.kurl.sh/cicd-demo-unstable | sudo bash'
         ada-${REPLICATED_APP}-${GITHUB_SHA}
+    - name: Test the application
+      run: echo "testing the application!"
   promote-release:
     runs-on: ubuntu-latest
     needs: deploy-embedded-cluster
