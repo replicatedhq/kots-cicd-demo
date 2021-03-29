@@ -125,6 +125,10 @@ This repo contains a [GitHub Actions](https://help.github.com/en/github/automati
 
 - Ensure a channel exists for the branch that was pushed to
 - Create a release based on the contents of `./manifests`
+- TODO: deploy the application to a test cluster using kots
+- TODO: test that the application works in-situ
+- TODO: promote a successfully built & tested app to a stable channel
+- TODO: notify via email/slack/whatever when we cut a new release
 
 ## Advanced Usage
 
